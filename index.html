@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>NyaaTube – Organize your YouTube, your way 🐱</title>
+<meta name="description" content="Organize your YouTube subscriptions into custom groups and customize your feed." />
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, "Segoe UI", Roboto, sans-serif;
+    background: #fff9f5;
+    color: #222;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  [data-lang="en"] .ko { display: none; }
+  [data-lang="ko"] .en { display: none; }
+
+  .lang-toggle {
+    position: fixed;
+    top: 18px; right: 20px;
+    z-index: 100;
+    background: #f0f0f0;
+    border-radius: 20px;
+    padding: 3px;
+    display: flex;
+    gap: 0;
+  }
+  .lang-btn {
+    padding: 5px 14px;
+    border-radius: 17px;
+    border: none;
+    background: transparent;
+    font-size: 12px; font-weight: 600;
+    cursor: pointer; color: #aaa;
+    transition: all 0.2s;
+    position: relative;
+    z-index: 1;
+  }
+  .lang-btn.active {
+    background: #fff;
+    color: #111;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.12);
+  }
+
+  .hero {
+    display: flex; flex-direction: column; align-items: center;
+    padding: 80px 24px 48px; text-align: center; max-width: 540px;
+  }
+
+  .cat-icon {
+    width: 110px; height: 110px;
+    animation: float 3s ease-in-out infinite;
+    margin-bottom: 24px;
+    filter: drop-shadow(0 8px 24px rgba(255,40,40,0.18));
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  h1 { font-size: 42px; font-weight: 800; letter-spacing: -1px; color: #111; margin-bottom: 16px; }
+
+  .tagline { font-size: 17px; color: #666; line-height: 1.7; margin-bottom: 36px; }
+  .tagline strong { color: #ff2828; }
+
+  .cta-btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: #111; color: #fff;
+    padding: 14px 28px; border-radius: 14px;
+    font-size: 15px; font-weight: 700; text-decoration: none;
+    transition: transform 0.15s, box-shadow 0.15s;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  }
+  .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(0,0,0,0.2); }
+  .cta-btn img { width: 22px; height: 22px; }
+  .cta-sub { font-size: 11px; color: #bbb; margin-top: 12px; }
+
+  .features {
+    display: flex; flex-direction: column; gap: 16px;
+    padding: 0 24px 64px; width: 100%; max-width: 480px;
+  }
+  .feature-card {
+    background: #fff; border-radius: 18px; padding: 22px 24px;
+    display: flex; align-items: flex-start; gap: 18px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06); transition: transform 0.15s;
+  }
+  .feature-card:hover { transform: translateY(-2px); }
+  .feature-emoji { font-size: 32px; flex-shrink: 0; line-height: 1; }
+  .feature-title { font-size: 15px; font-weight: 700; margin-bottom: 5px; color: #111; }
+  .feature-desc { font-size: 13px; color: #888; line-height: 1.6; }
+
+  .divider { width: 40px; height: 3px; background: #ff2828; border-radius: 2px; margin: 0 auto 48px; opacity: 0.5; }
+
+  footer {
+    margin-top: auto; padding: 28px 24px;
+    text-align: center; font-size: 12px; color: #bbb;
+    border-top: 1px solid #f0f0f0; width: 100%;
+  }
+  footer a { color: #bbb; text-decoration: none; }
+  footer a:hover { color: #ff2828; }
+  .footer-links { display: flex; justify-content: center; gap: 20px; margin-bottom: 8px; }
+</style>
+</head>
+<body data-lang="en">
+
+<div class="lang-toggle">
+  <button class="lang-btn active" onclick="setLang('en')">EN</button>
+  <button class="lang-btn" onclick="setLang('ko')">한국어</button>
+</div>
+
+<section class="hero">
+  <img class="cat-icon" src="icons/icon-128.png" alt="NyaaTube" />
+  <h1>NyaaTube</h1>
+
+  <p class="tagline en">See only the channels <strong>you actually care about</strong>.<br />Group your subscriptions. Your YouTube, your way.</p>
+  <p class="tagline ko">유튜브 구독채널을 그룹으로 만들어 정리해보세요!<br /><strong>J들의 필수 크롬앱</strong></p>
+
+  <a class="cta-btn" href="https://chrome.google.com/webstore" target="_blank">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/e/e1/Google_Chrome_icon_%28February_2022%29.svg" alt="Chrome" />
+    <span class="en">Add to Chrome</span>
+    <span class="ko">크롬에 추가하기</span>
+  </a>
+  <p class="cta-sub en">Chrome Extension</p>
+  <p class="cta-sub ko">크롬 확장 프로그램</p>
+</section>
+
+<div class="divider"></div>
+
+<section class="features">
+  <div class="feature-card">
+    <div class="feature-emoji">📁</div>
+    <div>
+      <div class="feature-title en">Group your subscriptions</div>
+      <div class="feature-title ko">구독 채널을 그룹으로 정리</div>
+      <div class="feature-desc en">Sort hundreds of subscriptions into custom groups like Study, Gaming, or Music — right in the YouTube sidebar.</div>
+      <div class="feature-desc ko">공부, 게임, 음악처럼 나만의 그룹으로 구독 채널을 정리해 유튜브 사이드바를 깔끔하게.</div>
+    </div>
+  </div>
+
+  <div class="feature-card">
+    <div class="feature-emoji">✨</div>
+    <div>
+      <div class="feature-title en">Digital detox, built-in</div>
+      <div class="feature-title ko">디지털 디톡스</div>
+      <div class="feature-desc en">Hide home feed recommendations, Shorts, and suggested videos. Watch with intention, not by accident.</div>
+      <div class="feature-desc ko">홈 피드 추천, Shorts, 연관 동영상을 숨기고 내가 보고 싶은 것만 봐요. 유튜브를 의도적으로.</div>
+    </div>
+  </div>
+
+  <div class="feature-card">
+    <div class="feature-emoji">🔒</div>
+    <div>
+      <div class="feature-title en">Your data stays with you</div>
+      <div class="feature-title ko">데이터는 내 기기에만</div>
+      <div class="feature-desc en">Everything is stored locally on your device. No servers, no tracking, no data sharing.</div>
+      <div class="feature-desc ko">모든 데이터는 내 기기에만 저장됩니다. 서버 없음, 추적 없음, 데이터 공유 없음.</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-links">
+    <a href="privacy.html">Privacy Policy / 개인정보처리방침</a>
+    <a href="mailto:jiyecutecat@gmail.com">Contact</a>
+  </div>
+  <div>© 2026 jiyecutecat</div>
+</footer>
+
+<script>
+  function setLang(lang) {
+    document.body.setAttribute('data-lang', lang);
+    document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+    document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`).classList.add('active');
+  }
+</script>
+</body>
+</html>
